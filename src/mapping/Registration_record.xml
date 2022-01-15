@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="mapping">
+	
+	    <insert id="addRegistration_record" parameterType="Registration_record" >   
+	        insert into registration_record(registration_record_id,medical_record_id,identityNumber ,p_name,p_gender ,p_birth,p_age ,p_address ,now_date ,morning_afternoon,pay_type ,dept_name,doc_name,registration_level,need_medical_record_book,	diagnose_state,delete_mark) 
+	        values(#{registration_record_id},#{medical_record_id},#{identityNumber},#{p_name},#{p_gender},#{p_birth},#{p_age},#{p_address},#{now_date},#{morning_afternoon},#{pay_type},#{dept_name},#{doc_name},#{registration_level},#{need_medical_record_book},#{diagnose_state},#{delete_mark})
+	
+	    </insert>
+	   
+	    <delete id="deleteRegistration_record" parameterType="Registration_record">
+	        delete from registration_record where registration_record_id= #{registration_record_id}   
+	    </delete>
+	   
+	      <select id="getRegistration_record" parameterType="String" resultType="Registration_record">
+	        select * from  registration_record where registration_record_id= #{registration_record_id}    
+	    </select>
+
+
+		<select id="listRegistration_record"  resultType="Registration_record">
+	        select * from  registration_record ;
+	    </select>	    
+	    
+	    
+	  	<update id="updateRegistration_record_diagnose_state_by_m_r_id" parameterType="String">  
+        	update registration_record
+        		set registration_record.diagnose_state = "已看诊"
+        		where registration_record.medical_record_id = #{m_r_id} ;
+		</update>  
+
+	 
+	</mapper>
+	

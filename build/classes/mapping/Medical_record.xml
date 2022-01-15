@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="mapping">
+	
+	    <insert id="addMedical_record" parameterType="Medical_record" >   
+	        insert into medical_record(medical_record_id,patient_description,now_disease ,now_disease_situation,past_disease,allergy,examination ,china_west,initial_diagnose ,examination_suggestion ,note ,delete_mark) 
+	        values(#{medical_record_id},#{patient_description},#{now_disease},#{now_disease_situation},#{past_disease},#{allergy},#{examination},#{china_west},#{initial_diagnose},#{examination_suggestion},#{note},#{delete_mark})
+	    </insert>
+	  
+	
+	</mapper>
+	

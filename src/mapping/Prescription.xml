@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="mapping">
+	
+	    <insert id="addPrescription" parameterType="Prescription" >   
+	        insert into prescription(prescription_id,medical_record_id,prescription_name ,doc_id,prescription_time,pay_state,delete_mark ) 
+	        values(#{prescription_id},#{medical_record_id},#{prescription_name},#{doc_id},#{past_disease},#{prescription_time},#{pay_state},#{delete_mark})
+	    </insert>
+	  
+	  
+
+
+	    <select id="get_max_p_id" resultType="int">
+	        	select count(prescription_id) 
+  				from prescription;
+	    </select>	    
+	    
+	
+	    
+	    <select id="getPrescription_by_m_r_id" parameterType="String" resultType="Prescription">
+	        select * from   prescription  where medical_record_id= #{medical_record_id} ;
+	    </select>
+	    
+	    
+	    <select id="getPrescription_templates" resultType="Prescription">
+	        
+	        select * from   prescription  where medical_record_id= "0" ;
+
+	    </select>
+	    
+	        
+	    
+	    
+	    
+	   	<select id="listPrescription_drugs_by_p_id" parameterType="String" resultType="Prescription_drug">
+	        select * from  prescription_drug where prescription_id = #{prescription_id}; 
+	    </select>
+
+
+   
+	  	<update id="change_prescription_pay_state" parameterType="String">  
+        	update prescription
+        		set prescription.pay_state = "已缴费"
+        		where prescription.prescription_id = #{medical_record_id1} ;
+		</update>  
+	    
+	</mapper>
